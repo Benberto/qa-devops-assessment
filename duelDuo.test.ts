@@ -36,6 +36,7 @@ test("Add to Duo button adds bot to duo", async () => {
     await driver.sleep(3000)
     const bots = await driver.findElement(By.css('div#choices.container'))
     const displayBots = await bots.isDisplayed()
+    await driver.sleep(1000)
     const botBtn = await driver.findElement(By.className("bot-btn"));
     await botBtn.click();
     await driver.sleep(3000)
