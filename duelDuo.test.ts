@@ -12,6 +12,7 @@ beforeEach(async () => {
 afterAll(async () => {
     driver.quit()
 })
+
 describe('Test Duel Duo', () => {
 test('Title shows up when page loads', async () => {
     const title = await driver.findElement(By.id('title'))
@@ -26,7 +27,7 @@ test('Draw button should display', async () => {
     const bots = await driver.findElement(By.css('div#choices.container'))
     const displayBots = await bots.isDisplayed()
     expect(displayBots).toBe(true)
-
+    driver.navigate().refresh();
 });
 
 
@@ -34,8 +35,8 @@ test("Add to Duo button adds bot to duo", async () => {
     const drawButton = await driver.findElement(By.id("draw"));
     await drawButton.click();
     await driver.sleep(3000)
-    const bots = await driver.findElement(By.css('div#choices.container'))
-    const displayBots = await bots.isDisplayed()
+    const bot = await driver.findElement(By.css('div#choices.container'))
+    const displayBots = await bot.isDisplayed()
     await driver.sleep(1000)
     const botBtn = await driver.findElement(By.className("bot-btn"));
     await botBtn.click();
@@ -43,6 +44,7 @@ test("Add to Duo button adds bot to duo", async () => {
     const playerBot = await driver.findElement(By.id("player-duo"));
     const isDisplayed = await playerBot.isDisplayed();
     expect(isDisplayed).toBe(true);
+    driver.navigate().refresh();
 });
 
 });
